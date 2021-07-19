@@ -4,9 +4,241 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
-    <Grid>
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="280" Width="380">
+    <Grid Background="#FF972C36">
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="../Images/Bg.jpeg" Stretch="UniformToFill" AlignmentY="Top"/>
+        </Grid.Background>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
+        <TextBlock Background="#1e1e1e" Opacity="0.85" Grid.ColumnSpan="2" Margin="0 1 0 0" FontSize="17" Padding="3" TextAlignment="Right" Foreground="White" Text="{Binding Field}"></TextBlock>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Border" x:Key="btnBorder">
+                    <Style.Setters>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="Margin" Value="1"/>
+                        <Setter Property="BorderBrush" Value="DarkSlateBlue"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="CornerRadius" Value="18"/>
+                        <Setter Property="Background" Value="CadetBlue"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Aqua"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="Border" BasedOn="{StaticResource btnBorder}" x:Key="end">
+                    <Style.Setters>
+                        <Setter Property="Background" Value="#FF151212"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF1925A2"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style TargetType="TextBlock" x:Key="btnText">
+                    <Style.Setters>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="Margin" Value="0 0 0 3"/>
+                    </Style.Setters>
+                </Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource btnText}" x:Key="btnSymbol">
+                    <Setter Property="Foreground" Value="Yellow"></Setter>
+                </Style>
+            </Grid.Resources>
+
+            
+            <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="0">
+                <TextBlock Style="{StaticResource btnText}" Foreground="#EEF0FD" Text="C">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="1">
+                <TextBlock Style="{StaticResource btnText}" Text="7">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="2">
+                <TextBlock Style="{StaticResource btnText}" Text="4">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="3">
+                <TextBlock Style="{StaticResource btnText}" Text="1">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="4">
+                <TextBlock Style="{StaticResource btnText}" Opacity="0.7" Text="+/–">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="0">
+                <TextBlock Style="{StaticResource btnSymbol}" Text="( )">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="1">
+                <TextBlock Style="{StaticResource btnText}" Text="8">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="2">
+                <TextBlock Style="{StaticResource btnText}" Text="5">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="3">
+                <TextBlock Style="{StaticResource btnText}" Text="2">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="4">
+                <TextBlock Style="{StaticResource btnText}" Text="0">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="0">
+                <TextBlock Style="{StaticResource btnSymbol}" FontWeight="Black" Text="%">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="1">
+                <TextBlock Style="{StaticResource btnText}" Text="9">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="2">
+                <TextBlock Style="{StaticResource btnText}" Text="6">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="3">
+                <TextBlock Style="{StaticResource btnText}" Text="3">
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding InputNumberCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="4">
+                <TextBlock Style="{StaticResource btnText}" FontWeight="Black" Opacity="0.7" Text=".">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="3" Grid.Row="0">
+                <TextBlock Style="{StaticResource btnSymbol}" Text="/">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="3" Grid.Row="1">
+                <TextBlock Style="{StaticResource btnSymbol}" Text="x">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="3" Grid.Row="2">
+                <TextBlock Style="{StaticResource btnSymbol}" Text="–">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource btnBorder}" Grid.Column="3" Grid.Row="3">
+                <TextBlock Style="{StaticResource btnSymbol}" Text="+">
+                    
+                </TextBlock>
+            </Border>
+            <Border Style="{StaticResource end}" Grid.Column="3" Grid.Row="4">
+                <TextBlock Style="{StaticResource btnText}" Foreground="White" Text="=">
+                    
+                </TextBlock>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
