@@ -85,41 +85,38 @@
                 </TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="1">
-                <TextBlock Style="{StaticResource btnText}" Text="7">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="7" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="7"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="2">
-                <TextBlock Style="{StaticResource btnText}" Text="4">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="4" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="4"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="3">
-                <TextBlock Style="{StaticResource btnText}" Text="1">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="1" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="1"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="4">
                 <TextBlock Style="{StaticResource btnText}" Opacity="0.7" Text="+/–">
-                    
+
                 </TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="0">
@@ -128,48 +125,44 @@
                 </TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="1">
-                <TextBlock Style="{StaticResource btnText}" Text="8">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="8" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="8"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="2">
-                <TextBlock Style="{StaticResource btnText}" Text="5">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="5" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="5"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="3">
-                <TextBlock Style="{StaticResource btnText}" Text="2">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="2" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="2"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="4">
-                <TextBlock Style="{StaticResource btnText}" Text="0">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="0" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="0"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="0">
                 <TextBlock Style="{StaticResource btnSymbol}" FontWeight="Black" Text="%">
@@ -177,37 +170,34 @@
                 </TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="1">
-                <TextBlock Style="{StaticResource btnText}" Text="9">
-                    <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="9" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="9"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="2">
-                <TextBlock Style="{StaticResource btnText}" Text="6">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="6" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="6"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="3">
-                <TextBlock Style="{StaticResource btnText}" Text="3">
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction
                             Command="{Binding InputNumberCommand}"
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBlock,Mode=FindAncestor}, Path=Text}" />
+                            CommandParameter="3" />
                     </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Text="3"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="4">
                 <TextBlock Style="{StaticResource btnText}" FontWeight="Black" Opacity="0.7" Text=".">

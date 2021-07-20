@@ -11,7 +11,10 @@ namespace Calculator.ViewModels
     {
         public MainViewModel()
         {
-
+            InputNumberCommand = new RelayCommand(obj =>
+            {
+                Field += (string)obj;
+            });
         }
 
         private string field;
@@ -21,19 +24,8 @@ namespace Calculator.ViewModels
             set { field = value; OnPropertyChanged("Field"); }
         }
 
+        public RelayCommand InputNumberCommand { get; set; }
 
-        private RelayCommand inputNumberCommand;
-        public RelayCommand InputNumberCommand
-        {
-            get
-            {
-                return inputNumberCommand ??
-                  (inputNumberCommand = new RelayCommand(obj =>
-                  {
-                      Field += Convert.ToString(obj);
-                  }));
-            }
-        }
 
 
 
