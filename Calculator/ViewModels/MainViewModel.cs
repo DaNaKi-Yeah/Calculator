@@ -2,30 +2,46 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Calculator.ViewModels
 {
     class MainViewModel : INotifyPropertyChanged
     {
+        public RelayCommand ClickButtonCommand { get; set; }
+        public RelayCommand ResultCommand { get; set; }
         public MainViewModel()
         {
-            InputNumberCommand = new RelayCommand(obj =>
+            ClickButtonCommand = new RelayCommand(obj =>
             {
-                Field += (string)obj;
+                UpField += (string)obj;
+            });
+
+            ResultCommand = new RelayCommand(obj =>
+            {
+                string сalculation = UpField.Replace('x', '*');
+
+                NCalc.Expression exp = new NCalc.Expression(сalculation);
+
+                UpField = exp.Evaluate().ToString();
             });
         }
 
-        private string field;
-        public string Field
+
+        private string upField;
+        public string UpField
         {
-            get { return field; }
-            set { field = value; OnPropertyChanged("Field"); }
+            get { return upField; }
+            set
+            {
+                upField = value;
+
+                OnPropertyChanged("UpField");
+            }
         }
-
-        public RelayCommand InputNumberCommand { get; set; }
-
 
 
 
