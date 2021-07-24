@@ -21,7 +21,8 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox IsReadOnly="True" Cursor="Cross" TextWrapping="Wrap" Background="#282a51" Grid.ColumnSpan="2" Margin="3 4 3 3" Opacity="0.95" FontSize="17" Padding="3" TextAlignment="Right" Foreground="White" Text="{Binding UpField}"></TextBox>
+        <TextBox IsReadOnly="True" Cursor="Cross" TextWrapping="Wrap" Background="#282a51" Grid.ColumnSpan="2" Margin="3 4 3 3" Opacity="0.95" FontSize="19" Padding="3" TextAlignment="Right" Foreground="White" Text="{Binding UpField}"></TextBox>
+        <Label Grid.Column="1" Content="{Binding DownField}" FontSize="19" Foreground="#FFB9B9B9" Margin="5 8" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
 
         <Border BorderBrush="White" BorderThickness="2" Grid.Column="1" Grid.Row="1"/>
         <Grid Grid.Column="1" Grid.Row="1" Margin="3">
@@ -77,9 +78,13 @@
 
 
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="0">
-                <TextBlock Style="{StaticResource btnText}" Foreground="#EEF0FD" Text="C">
-                    
-                </TextBlock>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding ClearCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnText}" Foreground="#EEF0FD" Text="C"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="0" Grid.Row="1">
                 <i:Interaction.Triggers>
@@ -117,9 +122,13 @@
                 </TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="0">
-                <TextBlock Style="{StaticResource btnSymbol}" Text="( )">
-                    
-                </TextBlock>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding CutCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnSymbol}" Foreground="Red" Text="o"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="1" Grid.Row="1">
                 <i:Interaction.Triggers>
@@ -162,9 +171,13 @@
                 <TextBlock Style="{StaticResource btnText}" Text="0"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="0">
-                <TextBlock Style="{StaticResource btnSymbol}" FontWeight="Black" Text="%">
-                    
-                </TextBlock>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding AddRoundBracketCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Style="{StaticResource btnSymbol}" Text="( )"></TextBlock>
             </Border>
             <Border Style="{StaticResource btnBorder}" Grid.Column="2" Grid.Row="1">
                 <i:Interaction.Triggers>
