@@ -22,7 +22,7 @@ namespace Calculator.ViewModels
             {
                 string getButton = (string)obj;
 
-                if(getButton == ".")
+                if (getButton == ".")
                 {
                     getButton = "0.";
                 }
@@ -68,7 +68,7 @@ namespace Calculator.ViewModels
                             UpField = UpField.Remove(UpField.Length - 1, 1) + (getButton);
                         }
                     }
-                    else if(endCharIsSymbol == false)
+                    else if (endCharIsSymbol == false || symbols[4] == UpField[UpField.Length - 1].ToString())
                     {
                         if (getButton == "0.")
                         {
@@ -94,9 +94,12 @@ namespace Calculator.ViewModels
                                     }
                                 }
 
-                                if (isSymbol == true)
+                                if (isSymbol == true || StartIsNumber == true)
                                 {
                                     UpField += getButton;
+
+                                    StartIsNumber = false;
+
                                     break;
                                 }
                             }
@@ -111,9 +114,6 @@ namespace Calculator.ViewModels
                         UpField += getButton;
                     }
                 }
-
-
-
                 UpdateDownField();
             });
             ResultCommand = new RelayCommand(obj =>
@@ -121,12 +121,17 @@ namespace Calculator.ViewModels
                 UpField = DownField;
 
                 DownField = "";
+
+                UpdateStartIsNumber();
             });
             ClearCommand = new RelayCommand(obj =>
             {
+
                 UpField = "";
 
                 DownField = "";
+
+                UpdateStartIsNumber();
             });
             CutCommand = new RelayCommand(obj =>
             {
@@ -169,6 +174,8 @@ namespace Calculator.ViewModels
             set { downField = value; OnPropertyChanged("DownField"); }
         }
 
+        public bool StartIsNumber { get; set; } = true;
+
         private void UpdateDownField()
         {
             if (UpField.Length == 0)
@@ -195,6 +202,23 @@ namespace Calculator.ViewModels
                 NCalc.Expression exp = new NCalc.Expression(сalculation);
 
                 DownField = exp.Evaluate().ToString();
+            }
+        }
+        private void UpdateStartIsNumber()
+        {
+            StartIsNumber = true;
+
+            for (int i = 0; i < UpField.Length; i++)
+            {
+                string symbolText = UpField[i].ToString();
+
+                foreach (string symbol in symbols)
+                {
+                    if (symbolText == symbol)
+                    {
+                        StartIsNumber = false;
+                    }
+                }
             }
         }
 
