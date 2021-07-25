@@ -20,6 +20,8 @@ namespace Calculator.ViewModels
         {
             ClickButtonCommand = new RelayCommand(obj =>
             {
+                UpdateStartIsNumber();
+
                 string getButton = (string)obj;
 
                 if (getButton == ".")
@@ -46,6 +48,28 @@ namespace Calculator.ViewModels
                 }
                 else
                 {
+                    if (getButton == ")")
+                    {
+                        int isBalanceBrackets = 0;
+
+                        for (int i = 0; i < UpField.Length; i++)
+                        {
+                            if (UpField[i].ToString() == "(")
+                            {
+                                isBalanceBrackets++;
+                            }
+                            else if (UpField[i].ToString() == ")")
+                            {
+                                isBalanceBrackets--;
+                            }
+                        }
+
+                        if (isBalanceBrackets == 0)
+                        {
+                            return;
+                        }
+                    }
+
                     bool endCharIsSymbol = false;
                     bool gotCharIsSymbol = false;
 
@@ -68,11 +92,26 @@ namespace Calculator.ViewModels
                             UpField = UpField.Remove(UpField.Length - 1, 1) + (getButton);
                         }
                     }
+                    else if (UpField[UpField.Length - 1].ToString() == "(" && gotCharIsSymbol == true) { }
+                    else if(UpField[UpField.Length - 1].ToString() == ")" && (getButton == "0." || gotCharIsSymbol == false) && getButton != ")")
+                    {
+                        UpField += $"x{getButton}";
+                    }
+                    else if (endCharIsSymbol == true && getButton == ")")
+                    {
+                        UpField = UpField.Remove(UpField.Length - 1, 1) + getButton;
+                    }
                     else if (endCharIsSymbol == false || symbols[4] == UpField[UpField.Length - 1].ToString())
                     {
                         if (getButton == "0.")
                         {
                             getButton = ".";
+
+                            if (UpField[UpField.Length - 1].ToString() == "(")
+                            {
+                                UpField += "0.";
+                                return;
+                            }
 
                             for (int i = UpField.Length - 1; i >= 0; i--)
                             {
@@ -102,6 +141,21 @@ namespace Calculator.ViewModels
 
                                     break;
                                 }
+                            }
+                        }
+                        else if (getButton == "(")
+                        {
+                            if (UpField[UpField.Length - 1].ToString() == "(")
+                            {
+                                UpField += getButton;
+                            }
+                            else if (UpField[UpField.Length - 1].ToString() == ".")
+                            {
+                                UpField = UpField.Remove(UpField.Length - 1, 1) + "x(";
+                            }
+                            else
+                            {
+                                UpField += "x(";
                             }
                         }
                         else
@@ -135,11 +189,7 @@ namespace Calculator.ViewModels
             });
             CutCommand = new RelayCommand(obj =>
             {
-                if (UpField.Length != 1)
-                {
-                    UpField = UpField.Remove(UpField.Length - 1);
-                }
-                else
+                if (UpField.Length > 0) 
                 {
                     UpField = UpField.Remove(UpField.Length - 1);
                     DownField = "";
@@ -201,7 +251,14 @@ namespace Calculator.ViewModels
 
                 NCalc.Expression exp = new NCalc.Expression(сalculation);
 
-                DownField = exp.Evaluate().ToString();
+                try
+                {
+                    DownField = exp.Evaluate().ToString().Replace(',', '.');
+                }
+                catch (Exception ex)
+                {
+                    DownField = "Ошибка вычисления";
+                }
             }
         }
         private void UpdateStartIsNumber()
