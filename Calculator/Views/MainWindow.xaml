@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
+        xmlns:m="clr-namespace:Calculator.Models"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="280" Width="380">
+        WindowStartupLocation="CenterScreen" Name="mainWindow"
+        Title="MainWindow" Height="290" Width="380">
+    <Window.Resources>
+        
+    </Window.Resources>
     <Grid Background="#6365a2">
         <!--<Grid.Background>
             <ImageBrush ImageSource="../Images/Bg.jpeg" Stretch="UniformToFill" AlignmentY="Top"/>
@@ -20,11 +24,24 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Border" x:Key="btnBorder">
+                <Style.Setters>
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style.Setters>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Aqua"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
 
         <TextBox IsReadOnly="True" Cursor="Cross" TextWrapping="Wrap" Background="#282a51" Grid.ColumnSpan="2" Margin="3 4 3 3" Opacity="0.95" FontSize="19" Padding="3" TextAlignment="Right" Foreground="White" Text="{Binding UpField}"></TextBox>
         <Label Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding DownField}" FontSize="19" Foreground="#FFB9B9B9" Margin="5 8" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
 
-        <Border BorderBrush="White" BorderThickness="2" Grid.Column="1" Grid.Row="1"/>
+        <Border BorderBrush="#c4c7f2" BorderThickness="2" Grid.Column="1" Grid.Row="1"/>
         <Grid Grid.Column="1" Grid.Row="1" Margin="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -40,17 +57,6 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.Resources>
-                <Style TargetType="Border" x:Key="btnBorder">
-                    <Style.Setters>
-                        <Setter Property="SnapsToDevicePixels" Value="True"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Style.Setters>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Aqua"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
                 <Style TargetType="Border" BasedOn="{StaticResource btnBorder}" x:Key="end">
                     <Style.Setters>
                         <Setter Property="Background" Value="#FF211919"/>
@@ -289,8 +295,81 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <TextBlock Style="{StaticResource btnText}" Foreground="White" Text="=">
-                    
+
                 </TextBlock>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="White" Margin="3">
+            <Grid.Resources>
+                <Style TargetType="Border" BasedOn="{StaticResource btnBorder}" x:Key="Clear">
+                    <Style.Setters>
+                        <Setter Property="Background" Value="Brown"/>
+                        <Setter Property="CornerRadius" Value="12"/>
+                    </Style.Setters>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="GreenYellow"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListBox ItemsSource="{Binding Operations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Padding="3" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedOperation}">
+                <!--<ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding DeleteCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <MenuItem.Header>
+                                <TextBlock Text="Delete"></TextBlock>
+                            </MenuItem.Header>
+                            <MenuItem.Icon>
+                                <TextBlock TextAlignment="Center" Text="X" FontWeight="Black"></TextBlock>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>-->
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction
+                                            Command="{Binding CopyCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                            <Grid HorizontalAlignment="Right">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Path=OpUpField}" HorizontalAlignment="Left" TextAlignment="Right" Foreground="#FF383030" FontSize="15"></TextBlock>
+                                <TextBlock Grid.Row="1"  Text="{Binding StringFormat=\={0}, Path=OpDownField}" HorizontalAlignment="Left" Foreground="#FF02209E" FontSize="18"></TextBlock>
+                                <Border Grid.Row="2" Background="#FF871919" Width="auto"/>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Border Grid.Row="1" Margin="5" Style="{StaticResource Clear}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding ClearHistoryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Text="Clear History"></TextBlock>
             </Border>
         </Grid>
     </Grid>

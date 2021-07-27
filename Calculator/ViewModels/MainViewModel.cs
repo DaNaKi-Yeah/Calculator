@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Calculator.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,6 +18,9 @@ namespace Calculator.ViewModels
         public RelayCommand ResultCommand { get; set; }
         public RelayCommand ClearCommand { get; set; }
         public RelayCommand CutCommand { get; set; }
+        public RelayCommand ClearHistoryCommand { get; set; }
+        public RelayCommand CopyCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
         public MainViewModel()
         {
             ClickButtonCommand = new RelayCommand(obj =>
@@ -248,6 +253,20 @@ namespace Calculator.ViewModels
             });
             ResultCommand = new RelayCommand(obj =>
             {
+                bool IsEqual = false;
+
+                for (int i = 0; i < Operations.Count; i++)
+                {
+                    if (Operations[i].OpUpField == UpField)
+                    {
+                        IsEqual = true;
+                    }
+                }
+                if (IsEqual == false)
+                {
+                    Operations.Add(new Operation() { OpUpField = UpField, OpDownField = DownField });
+                }
+
                 UpField = DownField;
 
                 DownField = "";
@@ -273,7 +292,34 @@ namespace Calculator.ViewModels
 
                 UpdateDownField();
             });
+            ClearHistoryCommand = new RelayCommand(obj =>
+            {
+                Operations.Clear();
+            });
+            //CopyCommand = new RelayCommand(obj =>
+            //{
+            //    MessageBox.Show("copy");
+
+            //    //TO DO: Починить
+            //});
+            //DeleteCommand = new RelayCommand(obj =>
+            //{
+            //    //Operations.Remove(SelectedOperation);
+            //    MessageBox.Show("loh");
+
+            //    //TO DO: Починить
+            //});
         }
+
+        public ObservableCollection<Operation> Operations { get; set; } = new ObservableCollection<Operation>();
+
+        private Operation selectedOperation;
+        public Operation SelectedOperation
+        {
+            get { return selectedOperation; }
+            set { selectedOperation = value; OnPropertyChanged("SelectedOperation"); }
+        }
+
 
         static string[] symbols = new string[5] { "+", "-", "x", "÷", "." };
 
