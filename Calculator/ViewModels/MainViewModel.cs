@@ -1,11 +1,11 @@
 ﻿using Calculator.Models;
 using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -21,6 +21,7 @@ namespace Calculator.ViewModels
         public RelayCommand ClearHistoryCommand { get; set; }
         public RelayCommand CopyCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
+        public RelayCommand KeyDownCommand { get; set; }
         public MainViewModel()
         {
             ClickButtonCommand = new RelayCommand(obj =>
@@ -314,6 +315,12 @@ namespace Calculator.ViewModels
             {
                 Operations.Remove(SelectedOperation);
             });
+            KeyDownCommand = new RelayCommand(obj =>
+            {
+                UpField += (string)obj;
+
+                UpdateDownField();
+            });
         }
 
         public ObservableCollection<Operation> Operations { get; set; } = new ObservableCollection<Operation>();
@@ -325,6 +332,7 @@ namespace Calculator.ViewModels
             set { selectedOperation = value; OnPropertyChanged("SelectedOperation"); }
         }
         public Operation lastSelectedOperation { get; set; }
+
 
 
         static string[] symbols = new string[5] { "+", "-", "x", "÷", "." };
@@ -348,8 +356,10 @@ namespace Calculator.ViewModels
             set { downField = value; OnPropertyChanged("DownField"); }
         }
 
+
         public bool StartIsNumber { get; set; } = true;
         public bool IsWorking { get; set; } = false;
+
 
         private void UpdateDownField()
         {
@@ -434,6 +444,7 @@ namespace Calculator.ViewModels
                 }
             }
         }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

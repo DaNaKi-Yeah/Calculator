@@ -9,6 +9,49 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" Name="mainWindow"
         Title="MainWindow" Height="290" Width="380">
+    <Window.InputBindings>
+        <KeyBinding Key="D0" Command="{Binding KeyDownCommand}" CommandParameter="0"/>
+        <KeyBinding Key="D1" Command="{Binding KeyDownCommand}" CommandParameter="1"/>
+        <KeyBinding Key="D2" Command="{Binding KeyDownCommand}" CommandParameter="2"/>
+        <KeyBinding Key="D3" Command="{Binding KeyDownCommand}" CommandParameter="3"/>
+        <KeyBinding Key="D4" Command="{Binding KeyDownCommand}" CommandParameter="4"/>
+        <KeyBinding Key="D5" Command="{Binding KeyDownCommand}" CommandParameter="5"/>
+        <KeyBinding Key="D6" Command="{Binding KeyDownCommand}" CommandParameter="6"/>
+        <KeyBinding Key="D7" Command="{Binding KeyDownCommand}" CommandParameter="7"/>
+        <KeyBinding Key="D8" Command="{Binding KeyDownCommand}" CommandParameter="8"/>
+        <KeyBinding Key="D9" Command="{Binding KeyDownCommand}" CommandParameter="9"/>
+        
+        <KeyBinding Key="NumPad0" Command="{Binding KeyDownCommand}" CommandParameter="0"/>
+        <KeyBinding Key="NumPad1" Command="{Binding KeyDownCommand}" CommandParameter="1"/>
+        <KeyBinding Key="NumPad2" Command="{Binding KeyDownCommand}" CommandParameter="2"/>
+        <KeyBinding Key="NumPad3" Command="{Binding KeyDownCommand}" CommandParameter="3"/>
+        <KeyBinding Key="NumPad4" Command="{Binding KeyDownCommand}" CommandParameter="4"/>
+        <KeyBinding Key="NumPad5" Command="{Binding KeyDownCommand}" CommandParameter="5"/>
+        <KeyBinding Key="NumPad6" Command="{Binding KeyDownCommand}" CommandParameter="6"/>
+        <KeyBinding Key="NumPad7" Command="{Binding KeyDownCommand}" CommandParameter="7"/>
+        <KeyBinding Key="NumPad8" Command="{Binding KeyDownCommand}" CommandParameter="8"/>
+        <KeyBinding Key="NumPad9" Command="{Binding KeyDownCommand}" CommandParameter="9"/>
+        
+        <KeyBinding Key="Enter" Command="{Binding ResultCommand}"/>
+        <KeyBinding Key="Backspace" Command="{Binding CutCommand}"/>
+        <KeyBinding Key="Esc" Command="{Binding ClearCommand}"/>
+        
+        <KeyBinding Modifiers="Shift" Key="OemPlus" Command="{Binding ClickButtonCommand}" CommandParameter="+"/>
+        <KeyBinding Key="Add" Command="{Binding ClickButtonCommand}" CommandParameter="+"/>
+        <KeyBinding Key="OemMinus" Command="{Binding ClickButtonCommand}" CommandParameter="-"/>
+        <KeyBinding Key="Subtract" Command="{Binding ClickButtonCommand}" CommandParameter="-"/>
+        <KeyBinding Modifiers="Shift" Key="D8" Command="{Binding ClickButtonCommand}" CommandParameter="x"/>
+        <KeyBinding Key="Multiply" Command="{Binding ClickButtonCommand}" CommandParameter="x"/>
+        <KeyBinding Key="OemQuestion" Command="{Binding ClickButtonCommand}" CommandParameter="÷"/>
+        <KeyBinding Key="Divide" Command="{Binding ClickButtonCommand}" CommandParameter="÷"/>
+        <KeyBinding Modifiers="Shift" Key="D6" Command="{Binding ClickButtonCommand}" CommandParameter="÷"/>
+        
+        <KeyBinding Key="Period" Command="{Binding ClickButtonCommand}" CommandParameter="."/>
+        <KeyBinding Key="OemPeriod" Command="{Binding ClickButtonCommand}" CommandParameter="."/>
+
+        <KeyBinding Modifiers="Shift" Key="D9" Command="{Binding ClickButtonCommand}" CommandParameter="("/>
+        <KeyBinding Modifiers="Shift" Key="D0" Command="{Binding ClickButtonCommand}" CommandParameter=")"/>
+    </Window.InputBindings>
     <Grid Background="#6365a2">
         <!--<Grid.Background>
             <ImageBrush ImageSource="../Images/Bg.jpeg" Stretch="UniformToFill" AlignmentY="Top"/>
