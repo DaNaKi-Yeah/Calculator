@@ -273,6 +273,7 @@ namespace Calculator.ViewModels
                 DownField = "";
 
                 UpdateStartIsNumber();
+                UpdateDownField();
             });
             ClearCommand = new RelayCommand(obj =>
             {
