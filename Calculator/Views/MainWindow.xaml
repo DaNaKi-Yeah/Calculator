@@ -4,11 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
-        xmlns:m="clr-namespace:Calculator.Models"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" Name="mainWindow"
-        Title="MainWindow" Height="290" Width="380">
+        WindowStartupLocation="CenterScreen" Icon="/Images/CalculatorIcon.png"
+        Title="Caltulator" Height="290" Width="380">
     <Window.InputBindings>
         <KeyBinding Key="D0" Command="{Binding KeyDownCommand}" CommandParameter="0"/>
         <KeyBinding Key="D1" Command="{Binding KeyDownCommand}" CommandParameter="1"/>
@@ -53,9 +52,6 @@
         <KeyBinding Modifiers="Shift" Key="D0" Command="{Binding ClickButtonCommand}" CommandParameter=")"/>
     </Window.InputBindings>
     <Grid Background="#6365a2">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="../Images/Bg.jpeg" Stretch="UniformToFill" AlignmentY="Top"/>
-        </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="85"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -77,7 +73,10 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
+        
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Created by DaNaKi-Yeah" Panel.ZIndex="1" Margin="6" Opacity="0.4"/>
 
+        
         <TextBox IsReadOnly="True" Cursor="Cross" TextWrapping="Wrap" Background="#282a51" Grid.ColumnSpan="2" Margin="3 4 3 3" Opacity="0.95" FontSize="19" Padding="3" TextAlignment="Right" Foreground="White" Text="{Binding UpField}"></TextBox>
         <Label Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding DownField}" FontSize="19" Foreground="#FFB9B9B9" Margin="5 8" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
 

@@ -16,6 +16,10 @@ using System.Windows.Shapes;
 
 namespace Calculator
 {
+    //Created by DaNaKi.
+    //Telegram   @DaNaKiYeah
+    //GitHub     @DaNaKi-Yeah
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -26,8 +30,6 @@ namespace Calculator
             InitializeComponent();
 
             DataContext = new MainViewModel();
-
-            
         }
     }
 }
