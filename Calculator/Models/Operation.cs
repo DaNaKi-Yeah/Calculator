@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Calculator.ViewModels;
+using System;
+using Calculator;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 
 namespace Calculator.Models
 {

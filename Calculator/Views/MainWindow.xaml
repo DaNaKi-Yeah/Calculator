@@ -9,9 +9,6 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" Name="mainWindow"
         Title="MainWindow" Height="290" Width="380">
-    <Window.Resources>
-        
-    </Window.Resources>
     <Grid Background="#6365a2">
         <!--<Grid.Background>
             <ImageBrush ImageSource="../Images/Bg.jpeg" Stretch="UniformToFill" AlignmentY="Top"/>
@@ -319,16 +316,10 @@
                 <RowDefinition Height="0.3*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <ListBox ItemsSource="{Binding Operations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Padding="3" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedOperation}">
-                <!--<ListBox.ContextMenu>
+            <ListBox ItemsSource="{Binding Operations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Padding="3" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedOperation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListBox.ContextMenu>
                     <ContextMenu>
-                        <MenuItem>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction
-                                        Command="{Binding DeleteCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                        <MenuItem Command="{Binding DeleteCommand}">
                             <MenuItem.Header>
                                 <TextBlock Text="Delete"></TextBlock>
                             </MenuItem.Header>
@@ -337,26 +328,28 @@
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
-                </ListBox.ContextMenu>-->
+                </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <!--<i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDoubleClick">
-                                    <i:InvokeCommandAction
+                            <StackPanel DataContext="{Binding ElementName=mainWindow, Path=DataContext}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction
                                             Command="{Binding CopyCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
-                            <Grid HorizontalAlignment="Right">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="2"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Path=OpUpField}" HorizontalAlignment="Left" TextAlignment="Right" Foreground="#FF383030" FontSize="15"></TextBlock>
-                                <TextBlock Grid.Row="1"  Text="{Binding StringFormat=\={0}, Path=OpDownField}" HorizontalAlignment="Left" Foreground="#FF02209E" FontSize="18"></TextBlock>
-                                <Border Grid.Row="2" Background="#FF871919" Width="auto"/>
-                            </Grid>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid HorizontalAlignment="Right" DataContext="{Binding RelativeSource={RelativeSource AncestorType=StackPanel,AncestorLevel=2,Mode=FindAncestor}, Path=DataContext}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="2"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Path=OpUpField}" HorizontalAlignment="Left" TextAlignment="Right" Foreground="#FF383030" FontSize="15"></TextBlock>
+                                    <TextBlock Grid.Row="1"  Text="{Binding StringFormat=\={0}, Path=OpDownField}" HorizontalAlignment="Left" Foreground="#FF02209E" FontSize="18"></TextBlock>
+                                    <Border Grid.Row="2" Background="#FF871919" Width="auto"/>
+                                </Grid>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

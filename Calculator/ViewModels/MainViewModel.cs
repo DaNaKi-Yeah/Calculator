@@ -102,20 +102,20 @@ namespace Calculator.ViewModels
                             {
                                 UpField = UpField.Remove(UpField.Length - 1, 1);
                             }
-                            else if(UpField[UpField.Length - 2].ToString() != "(")
+                            else if (UpField[UpField.Length - 2].ToString() != "(")
                             {
                                 UpField = UpField.Remove(UpField.Length - 1, 1) + (getButton);
                             }
                         }
                     }
-                    else if (UpField[UpField.Length - 1].ToString() == "(" && gotCharIsSymbol == true) 
+                    else if (UpField[UpField.Length - 1].ToString() == "(" && gotCharIsSymbol == true)
                     {
                         if (getButton == "+" || getButton == "-")
                         {
                             UpField += getButton;
                         }
                     }
-                    else if(UpField[UpField.Length - 1].ToString() == ")" && (getButton == "0." || gotCharIsSymbol == false) && getButton != ")")
+                    else if (UpField[UpField.Length - 1].ToString() == ")" && (getButton == "0." || gotCharIsSymbol == false) && getButton != ")")
                     {
                         UpField += $"x{getButton}";
                     }
@@ -284,7 +284,7 @@ namespace Calculator.ViewModels
             });
             CutCommand = new RelayCommand(obj =>
             {
-                if (UpField.Length > 0) 
+                if (UpField.Length > 0)
                 {
                     UpField = UpField.Remove(UpField.Length - 1);
                     DownField = "";
@@ -296,19 +296,24 @@ namespace Calculator.ViewModels
             {
                 Operations.Clear();
             });
-            //CopyCommand = new RelayCommand(obj =>
-            //{
-            //    MessageBox.Show("copy");
+            CopyCommand = new RelayCommand(obj =>
+            {
+                if (IsWorking == false)
+                {
+                    IsWorking = true;
+                }
+                else if (IsWorking == true)
+                {
+                    UpField += SelectedOperation?.OpDownField;
 
-            //    //TO DO: Починить
-            //});
-            //DeleteCommand = new RelayCommand(obj =>
-            //{
-            //    //Operations.Remove(SelectedOperation);
-            //    MessageBox.Show("loh");
-
-            //    //TO DO: Починить
-            //});
+                    IsWorking = false;
+                }
+                UpdateDownField();
+            });
+            DeleteCommand = new RelayCommand(obj =>
+            {
+                Operations.Remove(SelectedOperation);
+            });
         }
 
         public ObservableCollection<Operation> Operations { get; set; } = new ObservableCollection<Operation>();
@@ -319,11 +324,12 @@ namespace Calculator.ViewModels
             get { return selectedOperation; }
             set { selectedOperation = value; OnPropertyChanged("SelectedOperation"); }
         }
+        public Operation lastSelectedOperation { get; set; }
 
 
         static string[] symbols = new string[5] { "+", "-", "x", "÷", "." };
 
-        private string upField = "";
+        public string upField = "";
         public string UpField
         {
             get { return upField; }
@@ -343,6 +349,7 @@ namespace Calculator.ViewModels
         }
 
         public bool StartIsNumber { get; set; } = true;
+        public bool IsWorking { get; set; } = false;
 
         private void UpdateDownField()
         {
